@@ -1,0 +1,83 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-family: Avenir, sans-serif;
+    color: #111;
+}
+
+.container {
+    border: 2px solid gainsboro;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 25rem;
+    width: 30rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.48); 
+    box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2);
+    
+}
+
+button{
+    position: relative;
+    background-color: #fff;
+    margin: auto;
+    padding: 19px 22px;
+    transition: all .2s ease ;
+    cursor: pointer;
+    border: none;
+
+}
+
+button::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 28px;
+    background: RGBA(255,192,203,0.7);
+    width: 56px;
+    height: 56px;
+    transition: all .3s ease;
+}
+
+button span {
+    position: relative;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 900;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+button svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: #111;
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all .3s ease ;
+}
+
+button:hover::before{
+    width: 100%;
+    background: #FFAB9D;
+}
+
+button:hover svg{
+    transform: translateX(0);
+}
+
+button:active{
+    transform: scale(.96); 
+}

@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Jokes</title>
 </head>
 <body>
     <div class="container">
         <h1>Preparat per riure ?</h1>
-        <div class="jokes"></div>
-        <button onclick="generateJoke()">Seguent acudit</button>
+        <div class="jokes"></div>  
+            <button onclick="generateJoke()">
+                <span>Seguent acudit</span>
+                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>   
     </div>
     <script src="jokes.js"></script>
 </body>
