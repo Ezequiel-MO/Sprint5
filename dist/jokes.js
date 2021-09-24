@@ -8,6 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const jokeInDom = document.getElementById('jokes');
+const button = document.getElementById('generate-joke');
+const h2 = document.createElement('h2');
+const displayJoke = (joke) => {
+    h2.textContent = null;
+    h2.textContent = joke;
+    jokeInDom === null || jokeInDom === void 0 ? void 0 : jokeInDom.appendChild(h2);
+};
 const generateJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch('https://icanhazdadjoke.com/', {
         headers: {
@@ -16,6 +24,10 @@ const generateJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     });
     const json = yield response.json();
     const joke = json.joke;
+    displayJoke(joke);
     console.log("joke=>", joke);
     return joke;
+});
+button.addEventListener('click', () => {
+    generateJoke();
 });

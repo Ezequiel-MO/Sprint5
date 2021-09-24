@@ -8,16 +8,19 @@
     <title>Jokes</title>
 </head>
 <body>
+    <div class="weather">
+        <h4>Avui parcialment ennuvolat</h4>
+    </div>
     <div class="container">
-        <h1>Preparat per riure ?</h1>
-        <div class="jokes"></div>  
-            <button onclick="generateJoke()">
-                <span>Seguent acudit</span>
-                <svg width="13px" height="10px" viewBox="0 0 13 10">
-                    <path d="M1,5 L11,5"></path>
-                    <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </button>   
+        <h1>Preparat per riure ? <span>😂</span></h1>
+        <div id="jokes" class='jokes'></div>  
+        <button id='generate-joke'>
+            <span>Seguent acudit</span>
+            <svg width="13px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+            </svg>
+        </button>   
     </div>
     <script src="jokes.js"></script>
 </body>

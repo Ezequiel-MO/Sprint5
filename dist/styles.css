@@ -4,27 +4,54 @@ body {
     justify-content: center;
     align-items: center; 
     font-family: Avenir, sans-serif;
-    color: #111;
+    position: relative;  
+}
+
+body::after{
+    content: "";
+    background-image: url('./assets/background-image.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;     
+   
+}
+
+.weather{
+    position: absolute;
+    top: 0;
+    left:0;
 }
 
 .container {
     border: 2px solid gainsboro;
-    background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    height: 25rem;
+    height: fit-content;
+    padding: 5rem;
     width: 30rem;
     border-radius: 1rem;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.48); 
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.2);
-    
+
+}
+
+.jokes h2{ 
+  color: blue;
+  text-align: center;
+  margin-top: 4rem; 
 }
 
 button{
     position: relative;
-    background-color: #fff;
+    background-color: transparent;
     margin: auto;
     padding: 19px 22px;
     transition: all .2s ease ;
@@ -40,7 +67,7 @@ button::before{
     left: 0;
     display: block;
     border-radius: 28px;
-    background: RGBA(255,192,203,0.7);
+    background: #ea5933;
     width: 56px;
     height: 56px;
     transition: all .3s ease;
