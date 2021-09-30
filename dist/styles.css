@@ -35,7 +35,7 @@ body::after{
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    padding: 5rem;
+    padding: 1rem;
     width: 30rem;
     border-radius: 1rem;
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.48); 
@@ -49,7 +49,34 @@ body::after{
   margin-top: 4rem; 
 }
 
-button{
+.form {
+    
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: inline;
+}
+
+.formButtons button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.formButtons button h1 {
+    font-size: 2.5rem;
+}
+
+
+.next-joke{
     position: relative;
     background-color: transparent;
     margin: auto;
@@ -60,7 +87,7 @@ button{
 
 }
 
-button::before{
+.next-joke::before{
     content: "";
     position: absolute;
     top: 0;
@@ -73,7 +100,7 @@ button::before{
     transition: all .3s ease;
 }
 
-button span {
+.next-joke span {
     position: relative;
     font-size: 16px;
     line-height: 18px;
@@ -83,7 +110,7 @@ button span {
     vertical-align: middle;
 }
 
-button svg {
+.next-joke svg {
     position: relative;
     top: 0;
     margin-left: 10px;
@@ -96,7 +123,7 @@ button svg {
     transition: all .3s ease ;
 }
 
-button:hover::before{
+.next-joke:hover::before{
     width: 100%;
     background: #FFAB9D;
 }

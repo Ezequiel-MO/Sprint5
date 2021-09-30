@@ -14,13 +14,24 @@
     <div class="container">
         <h1>Preparat per riure ? <span>😂</span></h1>
         <div id="jokes" class='jokes'></div>  
-        <button id='generate-joke'>
-            <span>Seguent acudit</span>
-            <svg width="13px" height="10px" viewBox="0 0 13 10">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
-        </button>   
+        <form id="form" class="form">
+            <div class="hidden" id='rating'>
+                <h2>How was this joke ?</h2>
+                <div class="formButtons">
+                    <button type="submit" id="bad" name='bad' value='bad'><h1>🙄</h1></button>
+                    <button type="submit" id="funny" name='funny' value='funny'><h1>😀</h1></button>
+                    <button type="submit" id="hilarious" name='hilarious' value='hilarious'><h1>🤣</h1></button>
+                </div>
+            </div>
+            <button id='generate-joke' class="next-joke" type="submit">
+                <span>Seguent acudit</span>
+                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </button>   
+        </form>
+       
     </div>
     <script src="jokes.js"></script>
 </body>
