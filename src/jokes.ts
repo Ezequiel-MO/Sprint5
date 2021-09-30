@@ -8,7 +8,8 @@ const bad = document.getElementById('bad') as HTMLButtonElement;
 const funny = document.getElementById('funny') as HTMLButtonElement;
 const hilarious = document.getElementById('hilarious') as HTMLButtonElement;
 const ratingButtons = document.getElementById('rating') as HTMLDivElement;
-
+const weatherIcon = document.getElementById('weather-icon') as HTMLImageElement;
+const temperature = document.getElementById('temperature') as HTMLHeadingElement;
 
 interface Acudit {
     joke: string;
@@ -19,7 +20,7 @@ interface Acudit {
 let reportAcudits :Acudit[] =  []
 let joke: string;
 
-
+const weatherApiKey: string = "876d8e428d4184ffa9414a76bd35027d";
 
 const displayJoke = (joke: string): void => {
     h2.textContent = null;
@@ -84,14 +85,43 @@ const showRating =(): void => {
     
 }
 
+const displayWeather = (weatherImage: string, celsius: string): void=>{
+  weatherIcon.src = weatherImage;
+  temperature.textContent= celsius
+}
+
+
+
+const getWeather = async (longitude: number, latitude: number) : Promise<object> => {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${weatherApiKey}`)
+
+    const weatherData = await response.json()
+    console.log('weather data => ', weatherData)
+    const weatherImage : string= `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`  
+    const celsius :string = Math.floor(weatherData?.main.temp).toString()
+    displayWeather(weatherImage, celsius)
+    return weatherData
+}
+
+const getPosition = (): void=>{
+    navigator.geolocation.getCurrentPosition(position => {
+        getWeather(position.coords.longitude, position.coords.latitude)
+    }
+    )}
+
 generateJokeButton.addEventListener('click', (): void => {
     generateJoke()
     showRating()
+    getPosition()
 })
 
 
 form.addEventListener('submit', (e : Event) : void => {
     e.preventDefault()
+})
+
+window.addEventListener('load', (): void=> {
+    getPosition()
 })
 
 

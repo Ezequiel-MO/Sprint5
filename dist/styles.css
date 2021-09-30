@@ -25,8 +25,30 @@ body::after{
 
 .weather{
     position: absolute;
-    top: 0;
-    left:0;
+    top: 1rem;
+    left:1rem;
+    height: 4rem;
+    width: 10rem;
+    background-color: gold;
+    opacity: 0.8;
+    border-radius: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather img {
+    border-right: 2px solid black;
+}
+
+.weather span {
+    margin-left: .5rem;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.weather h3 {  
+    margin-left: .5rem
 }
 
 .container {

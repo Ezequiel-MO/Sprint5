@@ -16,8 +16,11 @@ const bad = document.getElementById('bad');
 const funny = document.getElementById('funny');
 const hilarious = document.getElementById('hilarious');
 const ratingButtons = document.getElementById('rating');
+const weatherIcon = document.getElementById('weather-icon');
+const temperature = document.getElementById('temperature');
 let reportAcudits = [];
 let joke;
+const weatherApiKey = "876d8e428d4184ffa9414a76bd35027d";
 const displayJoke = (joke) => {
     h2.textContent = null;
     h2.textContent = joke;
@@ -72,10 +75,32 @@ const showRating = () => {
     if (ratingButtons.className === 'hidden')
         ratingButtons.className = 'visible';
 };
+const displayWeather = (weatherImage, celsius) => {
+    weatherIcon.src = weatherImage;
+    temperature.textContent = celsius;
+};
+const getPosition = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+        getWeather(position.coords.longitude, position.coords.latitude);
+    });
+};
+const getWeather = (longitude, latitude) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${weatherApiKey}`);
+    const weatherData = yield response.json();
+    console.log('weather data => ', weatherData);
+    const weatherImage = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`;
+    const celsius = Math.floor(weatherData === null || weatherData === void 0 ? void 0 : weatherData.main.temp).toString();
+    displayWeather(weatherImage, celsius);
+    return weatherData;
+});
 generateJokeButton.addEventListener('click', () => {
     generateJoke();
     showRating();
+    getPosition();
 });
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+});
+window.addEventListener('load', () => {
+    getPosition();
 });
