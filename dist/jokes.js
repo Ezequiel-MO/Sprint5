@@ -26,6 +26,14 @@ const displayJoke = (joke) => {
     h2.textContent = joke;
     jokeInDom === null || jokeInDom === void 0 ? void 0 : jokeInDom.appendChild(h2);
 };
+const generateJokeAlt = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield fetch('http://api.icndb.com/jokes/random');
+    const json = yield response.json();
+    joke = json.value.joke;
+    displayJoke(joke);
+    console.log("joke alt=>", joke);
+    return joke;
+});
 const generateJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch('https://icanhazdadjoke.com/', {
         headers: {
@@ -79,11 +87,6 @@ const displayWeather = (weatherImage, celsius) => {
     weatherIcon.src = weatherImage;
     temperature.textContent = celsius;
 };
-const getPosition = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-        getWeather(position.coords.longitude, position.coords.latitude);
-    });
-};
 const getWeather = (longitude, latitude) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=en&appid=${weatherApiKey}`);
     const weatherData = yield response.json();
@@ -93,8 +96,21 @@ const getWeather = (longitude, latitude) => __awaiter(void 0, void 0, void 0, fu
     displayWeather(weatherImage, celsius);
     return weatherData;
 });
+const getPosition = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+        getWeather(position.coords.longitude, position.coords.latitude);
+    });
+};
+const randomJokes = () => {
+    let evenNumber;
+    evenNumber = Math.floor(Math.random() * 100) % 2 ? true : false;
+    if (evenNumber)
+        generateJoke();
+    else
+        generateJokeAlt();
+};
 generateJokeButton.addEventListener('click', () => {
-    generateJoke();
+    randomJokes();
     showRating();
     getPosition();
 });

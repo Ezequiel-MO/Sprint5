@@ -20,13 +20,22 @@ interface Acudit {
 let reportAcudits :Acudit[] =  []
 let joke: string;
 
+
 const weatherApiKey: string = "876d8e428d4184ffa9414a76bd35027d";
 
 const displayJoke = (joke: string): void => {
     h2.textContent = null;
     h2.textContent = joke
     jokeInDom?.appendChild(h2)
+}
 
+const generateJokeAlt = async ():Promise<string> => {
+    const response = await fetch('http://api.icndb.com/jokes/random')
+    const json = await response.json()
+    joke = json.value.joke
+    displayJoke(joke)
+    console.log("joke alt=>", joke)
+    return joke;
 }
 
 const generateJoke = async (): Promise<string> => {
@@ -81,8 +90,7 @@ hilarious.addEventListener('click', ():void =>{
 
 const showRating =(): void => {
     if (ratingButtons.className === 'hidden')
-        ratingButtons.className = 'visible'
-    
+        ratingButtons.className = 'visible'  
 }
 
 const displayWeather = (weatherImage: string, celsius: string): void=>{
@@ -109,8 +117,15 @@ const getPosition = (): void=>{
     }
     )}
 
+    const randomJokes = () : void => {
+        let evenNumber: boolean;
+        evenNumber = Math.floor(Math.random()*100) % 2 ? true: false
+        if (evenNumber)generateJoke()
+        else generateJokeAlt()    
+    }
+
 generateJokeButton.addEventListener('click', (): void => {
-    generateJoke()
+    randomJokes()
     showRating()
     getPosition()
 })
