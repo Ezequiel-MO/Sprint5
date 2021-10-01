@@ -22,3 +22,7 @@ El codi té la següent funcionalitat, a partir del Nivell 2
 - Per mostrar la info metereològica, faig servir la Api de OpenWeatherMap.
 - Per alternar acudits, faig servir icndb - una API d'acudits de Chuck Norris
 - Mostro acudits procedents de les dues APIS alternats de manera aleatòria.
+
+## Nivell 3
+
+- Al Nivell 3 hem maquetat una mica més l'aplicació.
