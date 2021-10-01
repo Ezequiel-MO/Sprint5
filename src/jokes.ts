@@ -1,8 +1,8 @@
 
-
+const root = document.getElementById('root') as HTMLDivElement;
 const jokeInDom = document.getElementById('jokes') as HTMLDivElement;
 const generateJokeButton = document.getElementById('generate-joke') as HTMLButtonElement;
-const h2 = document.createElement('h2');
+const h3 = document.createElement('h3');
 const form = document.getElementById('form') as HTMLFormElement;
 const bad = document.getElementById('bad') as HTMLButtonElement;
 const funny = document.getElementById('funny') as HTMLButtonElement;
@@ -10,6 +10,8 @@ const hilarious = document.getElementById('hilarious') as HTMLButtonElement;
 const ratingButtons = document.getElementById('rating') as HTMLDivElement;
 const weatherIcon = document.getElementById('weather-icon') as HTMLImageElement;
 const temperature = document.getElementById('temperature') as HTMLHeadingElement;
+const blob1 = document.getElementById('side-blob1') as HTMLDivElement;
+const blob2 = document.getElementById('side-blob2') as HTMLDivElement;
 
 interface Acudit {
     joke: string;
@@ -24,9 +26,9 @@ let joke: string;
 const weatherApiKey: string = "876d8e428d4184ffa9414a76bd35027d";
 
 const displayJoke = (joke: string): void => {
-    h2.textContent = null;
-    h2.textContent = joke
-    jokeInDom?.appendChild(h2)
+    h3.textContent = null;
+    h3.textContent = joke
+    jokeInDom?.appendChild(h3)
 }
 
 const generateJokeAlt = async ():Promise<string> => {
@@ -119,15 +121,29 @@ const getPosition = (): void=>{
 
     const randomJokes = () : void => {
         let evenNumber: boolean;
+        
         evenNumber = Math.floor(Math.random()*100) % 2 ? true: false
-        if (evenNumber)generateJoke()
-        else generateJokeAlt()    
+        if (evenNumber){
+            generateJoke()
+            root.classList.replace('blob1', 'blob2')
+            blob1.classList.replace('blob1', 'blob2')
+            blob2.classList.replace('blob1', 'blob2')
+        }
+        else {
+            generateJokeAlt()   
+            root.classList.replace('blob2', 'blob1')
+            blob1.classList.replace('blob2', 'blob1')
+            blob2.classList.replace('blob2', 'blob1')
+        } 
     }
 
 generateJokeButton.addEventListener('click', (): void => {
     randomJokes()
     showRating()
     getPosition()
+    root.classList.add('blob1')
+    blob1.classList.add('blob1')
+    blob2.classList.add('blob1')
 })
 
 

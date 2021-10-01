@@ -8,9 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const root = document.getElementById('root');
 const jokeInDom = document.getElementById('jokes');
 const generateJokeButton = document.getElementById('generate-joke');
-const h2 = document.createElement('h2');
+const h3 = document.createElement('h3');
 const form = document.getElementById('form');
 const bad = document.getElementById('bad');
 const funny = document.getElementById('funny');
@@ -18,13 +19,15 @@ const hilarious = document.getElementById('hilarious');
 const ratingButtons = document.getElementById('rating');
 const weatherIcon = document.getElementById('weather-icon');
 const temperature = document.getElementById('temperature');
+const blob1 = document.getElementById('side-blob1');
+const blob2 = document.getElementById('side-blob2');
 let reportAcudits = [];
 let joke;
 const weatherApiKey = "876d8e428d4184ffa9414a76bd35027d";
 const displayJoke = (joke) => {
-    h2.textContent = null;
-    h2.textContent = joke;
-    jokeInDom === null || jokeInDom === void 0 ? void 0 : jokeInDom.appendChild(h2);
+    h3.textContent = null;
+    h3.textContent = joke;
+    jokeInDom === null || jokeInDom === void 0 ? void 0 : jokeInDom.appendChild(h3);
 };
 const generateJokeAlt = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield fetch('http://api.icndb.com/jokes/random');
@@ -104,15 +107,26 @@ const getPosition = () => {
 const randomJokes = () => {
     let evenNumber;
     evenNumber = Math.floor(Math.random() * 100) % 2 ? true : false;
-    if (evenNumber)
+    if (evenNumber) {
         generateJoke();
-    else
+        root.classList.replace('blob1', 'blob2');
+        blob1.classList.replace('blob1', 'blob2');
+        blob2.classList.replace('blob1', 'blob2');
+    }
+    else {
         generateJokeAlt();
+        root.classList.replace('blob2', 'blob1');
+        blob1.classList.replace('blob2', 'blob1');
+        blob2.classList.replace('blob2', 'blob1');
+    }
 };
 generateJokeButton.addEventListener('click', () => {
     randomJokes();
     showRating();
     getPosition();
+    root.classList.add('blob1');
+    blob1.classList.add('blob1');
+    blob2.classList.add('blob1');
 });
 form.addEventListener('submit', (e) => {
     e.preventDefault();
