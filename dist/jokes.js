@@ -26,7 +26,7 @@ let joke;
 const weatherApiKey = "876d8e428d4184ffa9414a76bd35027d";
 const displayJoke = (joke) => {
     h3.textContent = null;
-    h3.textContent = joke;
+    h3.innerHTML = `<h3>${joke}</h3>`;
     jokeInDom === null || jokeInDom === void 0 ? void 0 : jokeInDom.appendChild(h3);
 };
 const generateJokeAlt = () => __awaiter(void 0, void 0, void 0, function* () {
